@@ -9,13 +9,26 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot, sendToArmy, removeFromArmy }) {
+function BotCard({ bot, sendBotToArmy, removeBotFromArmy}) 
+{
+  function handleCardClick()
+  {
+    if(sendBotToArmy)
+      {
+        sendBotToArmy(bot);
+      }
+    else if(removeBotFromArmy)
+      {
+        removeBotFromArmy(bot.id);
+      }
+    
+  }
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() =>sendToArmy(bot)}
+        onClick={handleCardClick}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
@@ -48,7 +61,7 @@ function BotCard({ bot, sendToArmy, removeFromArmy }) {
               <button
                 className="ui mini red button"
                 onClick={() =>
-                  removeFromArmy(bot.id)
+                  console.log("add code to connect event listener")
                 }
               >
                 x
